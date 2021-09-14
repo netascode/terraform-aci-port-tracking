@@ -1,31 +1,28 @@
-variable "name" {
-  description = "Tenant name."
-  type        = string
+variable "admin_state" {
+  description = "Admin state."
+  type        = bool
+  default     = false
+}
+
+variable "delay" {
+  description = "Delay. Minimum value: 1. Maximum value: 300."
+  type        = number
+  default     = 120
 
   validation {
-    condition     = can(regex("^[a-zA-Z0-9_.-]{0,64}$", var.name))
-    error_message = "Allowed characters: `a`-`z`, `A`-`Z`, `0`-`9`, `_`, `.`, `-`. Maximum characters: 64."
+    condition     = var.delay >= 1 && var.delay <= 300
+    error_message = "Minimum value: 1. Maximum value: 300."
   }
 }
 
-variable "alias" {
-  description = "Tenant alias."
-  type        = string
-  default     = ""
+variable "min_links" {
+  description = "Minimum links. Minimum value: 0. Maximum value: 48."
+  type        = number
+  default     = 0
 
   validation {
-    condition     = can(regex("^[a-zA-Z0-9_.-]{0,64}$", var.alias))
-    error_message = "Allowed characters: `a`-`z`, `A`-`Z`, `0`-`9`, `_`, `.`, `-`. Maximum characters: 64."
+    condition     = var.min_links >= 0 && var.min_links <= 48
+    error_message = "Minimum value: 0. Maximum value: 48."
   }
 }
 
-variable "description" {
-  description = "Tenant description."
-  type        = string
-  default     = ""
-
-  validation {
-    condition     = can(regex("^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{0,128}$", var.description))
-    error_message = "Allowed characters: `a`-`z`, `A`-`Z`, `0`-`9`, `\\`, `!`, `#`, `$`, `%`, `(`, `)`, `*`, `,`, `-`, `.`, `/`, `:`, `;`, `@`, ` `, `_`, `{`, `|`, }`, `~`, `?`, `&`, `+`. Maximum characters: 128."
-  }
-}

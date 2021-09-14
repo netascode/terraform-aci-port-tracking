@@ -14,35 +14,35 @@ terraform {
 module "main" {
   source = "../.."
 
-  name        = "ABC"
-  alias       = "ALIAS"
-  description = "DESCR"
+  admin_state = true
+  delay       = 5
+  min_links   = 2
 }
 
-data "aci_rest" "fvTenant" {
-  dn = "uni/tn-ABC"
+data "aci_rest" "infraPortTrackPol" {
+  dn = "uni/infra/trackEqptFabP-default"
 
   depends_on = [module.main]
 }
 
-resource "test_assertions" "fvTenant" {
-  component = "fvTenant"
+resource "test_assertions" "infraPortTrackPol" {
+  component = "infraPortTrackPol"
 
-  equal "name" {
-    description = "name"
-    got         = data.aci_rest.fvTenant.content.name
-    want        = "ABC"
+  equal "adminSt" {
+    description = "adminSt"
+    got         = data.aci_rest.infraPortTrackPol.content.adminSt
+    want        = "on"
   }
 
-  equal "nameAlias" {
-    description = "nameAlias"
-    got         = data.aci_rest.fvTenant.content.nameAlias
-    want        = "ALIAS"
+  equal "delay" {
+    description = "delay"
+    got         = data.aci_rest.infraPortTrackPol.content.delay
+    want        = "5"
   }
 
-  equal "descr" {
-    description = "descr"
-    got         = data.aci_rest.fvTenant.content.descr
-    want        = "DESCR"
+  equal "minlinks" {
+    description = "minlinks"
+    got         = data.aci_rest.infraPortTrackPol.content.minlinks
+    want        = "2"
   }
 }
