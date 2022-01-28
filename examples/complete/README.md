@@ -14,12 +14,11 @@ Note that this example will create resources. Resources can be destroyed with `t
 ```hcl
 module "aci_port_tracking" {
   source  = "netascode/port-tracking/aci"
-  version = ">= 0.0.1"
+  version = ">= 0.1.0"
 
   admin_state = true
   delay       = 5
   min_links   = 2
 }
-
 ```
 <!-- END_TF_DOCS -->

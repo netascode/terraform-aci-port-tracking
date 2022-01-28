@@ -1,4 +1,4 @@
 output "dn" {
-  value       = aci_rest.infraPortTrackPol.id
+  value       = aci_rest_managed.infraPortTrackPol.id
   description = "Distinguished name of `infraPortTrackPol` object."
 }

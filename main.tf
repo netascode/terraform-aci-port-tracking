@@ -1,4 +1,4 @@
-resource "aci_rest" "infraPortTrackPol" {
+resource "aci_rest_managed" "infraPortTrackPol" {
   dn         = "uni/infra/trackEqptFabP-default"
   class_name = "infraPortTrackPol"
   content = {
