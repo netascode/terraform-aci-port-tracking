@@ -5,5 +5,6 @@ resource "aci_rest_managed" "infraPortTrackPol" {
     adminSt  = var.admin_state == true ? "on" : "off"
     delay    = var.delay
     minlinks = var.min_links
+    includeApicPorts = var.include_apic_ports == true ? "yes" : "no"
   }
 }
