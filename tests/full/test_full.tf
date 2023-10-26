@@ -19,6 +19,7 @@ module "main" {
   admin_state = true
   delay       = 5
   min_links   = 2
+  include_apic_ports = true
 }
 
 data "aci_rest_managed" "infraPortTrackPol" {
@@ -46,5 +47,11 @@ resource "test_assertions" "infraPortTrackPol" {
     description = "minlinks"
     got         = data.aci_rest_managed.infraPortTrackPol.content.minlinks
     want        = "2"
+  }
+
+    equal "includeApicPorts" {
+    description = "includeApicPorts"
+    got         = data.aci_rest_managed.infraPortTrackPol.content.includeApicPorts
+    want        = "yes"
   }
 }

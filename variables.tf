@@ -26,3 +26,8 @@ variable "min_links" {
   }
 }
 
+variable "include_apic_ports" {
+  description = "Include APIC ports"
+  type = bool
+  default = false
+}
